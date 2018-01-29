@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using SortingAlgorithms.Algorithms;
 
@@ -17,9 +18,10 @@ namespace SortingAlgorithms
 
         static void PerformSort(Sort sort)
         {
-
+            Stopwatch sw = Stopwatch.StartNew();
             sort.SortItems();
-            Console.WriteLine(sort);
+            sw.Stop();
+            Console.WriteLine($"{sort}; {sw.Elapsed.TotalMilliseconds}ms");
         }
 
         /// <summary>
