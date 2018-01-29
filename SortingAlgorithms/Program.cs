@@ -17,7 +17,7 @@ namespace SortingAlgorithms
         static void Main(string[] args)
         {
             Console.WriteLine($"Unsorted: [{string.Join(",", Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count))}]");
-            PerformSort(new DefaultSort());
+            PerformSort(new LinqSort());
             PerformSort(new SelectionSort());
             Console.ReadLine();
         }

@@ -7,7 +7,7 @@ namespace SortingAlgorithms.Tests
     [TestFixture]
     public class SortingTestRunner
     {
-        private readonly SortingTest<DefaultSort> _defaultTest = new SortingTest<DefaultSort>();
+        private readonly SortingTest<LinqSort> _defaultTest = new SortingTest<LinqSort>();
         private readonly SortingTest<SelectionSort> _selectionTest = new SortingTest<SelectionSort>();
 
         [Test]

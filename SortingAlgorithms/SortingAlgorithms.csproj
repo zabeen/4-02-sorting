@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\ISorter.cs" />
-    <Compile Include="Algorithms\DefaultSort.cs" />
+    <Compile Include="Algorithms\LinqSort.cs" />
     <Compile Include="Algorithms\SelectionSort.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Program.cs" />
