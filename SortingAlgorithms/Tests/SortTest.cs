@@ -1,37 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SortingAlgorithms.Algorithms;
 
 namespace SortingAlgorithms.Tests
 {
-    [TestFixture]
     public class SortTest
     {
-        private readonly List<int> _unorderedItems = new List<int>() { 1, 3, 2, 1, 4, 0, 4 };
-        private readonly List<int> _orderedItems = new List<int>() { 0, 1, 1, 2, 3, 4, 4 };
+        private readonly ItemsToSort _items = new ItemsToSort();
+        private readonly Sort _sort;
 
-        [Test]
-        public void Sort_NumberOfItemsRemainsTheSame()
+        public SortTest(Sort sort)
         {
-            Sort sort = new Sort(_unorderedItems.Select(i => i).ToList());
-            sort.SortItems();
-
-            Assert.AreEqual(_unorderedItems.Count, sort.ItemsToSort.Count);
+            _sort = sort;
+            _sort.SortItems();
         }
 
-        [Test]
-        public void Sort_ItemsAreInCorrectOrder()
+        public void SortedListLengthRemainsIdenticalToUnsorted()
         {
-            Sort sort = new Sort(_unorderedItems.Select(i => i).ToList());
-            sort.SortItems();
+            Assert.AreEqual(_items.UnorderedItems.Count, _items.OrderedItems.Count);
+            Assert.AreEqual(_items.UnorderedItems.Count, _sort.ItemsToSort.Count);
+        }
 
-            for (var i = 0; i < sort.ItemsToSort.Count; i++)
+        public void ItemsAreInCorrectOrder()
+        {
+            for (var i = 0; i < _sort.ItemsToSort.Count; i++)
             {
-                Assert.AreEqual(sort.ItemsToSort[i], _orderedItems[i]);
+                Assert.AreEqual(_sort.ItemsToSort[i], _items.OrderedItems[i]);
             }
         }
     }

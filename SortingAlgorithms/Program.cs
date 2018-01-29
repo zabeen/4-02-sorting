@@ -17,7 +17,7 @@ namespace SortingAlgorithms
         {
             Console.WriteLine($"Unsorted: [{string.Join(",", Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count))}]");
             PerformSort(new Sort(Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count)));
-            PerformSort(new Selection(Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count)));
+            PerformSort(new SelectionSort(Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count)));
             Console.ReadLine();
         }
 

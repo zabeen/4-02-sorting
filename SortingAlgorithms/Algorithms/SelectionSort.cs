@@ -2,11 +2,11 @@
 
 namespace SortingAlgorithms.Algorithms
 {
-    public class Selection : Sort
+    public class SelectionSort : Sort
     {
         private int _startingIndex;
 
-        public Selection(IEnumerable<int> itemsToSort) : base(itemsToSort) {}
+        public SelectionSort(IEnumerable<int> itemsToSort) : base(itemsToSort) {}
 
         public override void SortItems()
         {
