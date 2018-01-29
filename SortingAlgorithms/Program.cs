@@ -8,6 +8,7 @@ namespace SortingAlgorithms
 {
     class Program
     {
+        
         private const int SeedValue = 12345;
         private const int MinValue = 0;
         private const int MaxValue = 1000;
@@ -16,15 +17,15 @@ namespace SortingAlgorithms
         static void Main(string[] args)
         {
             Console.WriteLine($"Unsorted: [{string.Join(",", Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count))}]");
-            PerformSort(new Sort(Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count)));
-            PerformSort(new SelectionSort(Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count)));
+            PerformSort(new DefaultSort());
+            PerformSort(new SelectionSort());
             Console.ReadLine();
         }
 
-        static void PerformSort(Sort sort)
+        static void PerformSort(ISorter sort)
         {
             Stopwatch sw = Stopwatch.StartNew();
-            sort.SortItems();
+            sort.SortItems(Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count));
             sw.Stop();
             Console.WriteLine($"{sort}; {sw.Elapsed.TotalMilliseconds}ms");
         }

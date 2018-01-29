@@ -1,34 +1,35 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SortingAlgorithms.Algorithms
 {
-    public class SelectionSort : Sort
+    public class SelectionSort : ISorter
     {
-        private int _startingIndex;
-
-        public SelectionSort(IEnumerable<int> itemsToSort) : base(itemsToSort) {}
-
-        public override void SortItems()
+        public IEnumerable<int> SortItems(IEnumerable<int> itemsToSort)
         {
-            var smallestItemIndex = _startingIndex;
+            var startingIndex = 0;
+            var items = itemsToSort.ToList();
+            var smallestItemIndex = startingIndex;
             
             do
             {
-                int smallestItemValue = ItemsToSort[_startingIndex];
-                for (var i = _startingIndex; i < ItemsToSort.Count; i++)
+                int smallestItemValue = items[startingIndex];
+                for (var i = startingIndex; i < items.Count; i++)
                 {
-                    if (ItemsToSort[i] <= smallestItemValue)
+                    if (items[i] <= smallestItemValue)
                     {
                         smallestItemIndex = i;
-                        smallestItemValue = ItemsToSort[i];
+                        smallestItemValue = items[i];
                     }
                 }
 
-                ItemsToSort.RemoveAt(smallestItemIndex);
-                ItemsToSort.Insert(_startingIndex,smallestItemValue);
-                _startingIndex++;
+                items.RemoveAt(smallestItemIndex);
+                items.Insert(startingIndex,smallestItemValue);
+                startingIndex++;
 
-            } while (_startingIndex < ItemsToSort.Count-1);
+            } while (startingIndex < items.Count-1);
+
+            return items;
         }
     }
 }
