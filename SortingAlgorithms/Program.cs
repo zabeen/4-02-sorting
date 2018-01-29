@@ -9,7 +9,7 @@ namespace SortingAlgorithms
     class Program
     {
         
-        private const int SeedValue = 12345;
+        private const int SeedValue = 1;
         private const int MinValue = 0;
         private const int MaxValue = 1000;
         private const int Count = 10;
@@ -24,10 +24,13 @@ namespace SortingAlgorithms
 
         static void PerformSort(ISorter sort)
         {
+            var items = Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count);
+
             Stopwatch sw = Stopwatch.StartNew();
-            sort.SortItems(Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count));
+            var sortedItems = sort.SortItems(items);
             sw.Stop();
-            Console.WriteLine($"{sort}; {sw.Elapsed.TotalMilliseconds}ms");
+
+            Console.WriteLine($"{sort.GetType().Name}: [{string.Join(",", sortedItems)}]; {sw.Elapsed.TotalMilliseconds}ms");
         }
     }
 }
