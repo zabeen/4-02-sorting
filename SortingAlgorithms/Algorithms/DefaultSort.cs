@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SortingAlgorithms.Algorithms
 {
@@ -11,7 +8,9 @@ namespace SortingAlgorithms.Algorithms
         public virtual IEnumerable<int> SortItems(IEnumerable<int> itemsToSort)
         {
             // use the in-built sort
-            return itemsToSort.OrderBy(i => i).ToList();
+            var items = itemsToSort.ToList();
+            items.Sort();
+            return items;
         }
     }
 }
