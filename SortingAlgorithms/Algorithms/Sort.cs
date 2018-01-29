@@ -5,7 +5,7 @@ namespace SortingAlgorithms.Algorithms
 {
     public class Sort
     {
-        protected List<int> ItemsToSort;
+        public List<int> ItemsToSort { get; }
 
         public Sort(IEnumerable<int> itemsToSort)
         {
