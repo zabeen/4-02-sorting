@@ -1,6 +1,10 @@
 ﻿using SortingAlgorithms.Algorithms;
 using SortingAlgorithms.Tests;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace SortingAlgorithms
 {
@@ -9,11 +13,15 @@ namespace SortingAlgorithms
         static void Main(string[] args)
         {
             Console.WriteLine("[U] = Unordered, [O] = Ordered\n");
+            
+            var selectionTask = Task.Run(() => WriteTimePerformance<SelectionSort>());
+            var insertionTask = Task.Run(() => WriteTimePerformance<InsertionSort>());
+            var linqTask = Task.Run(() => WriteTimePerformance<LinqSort>());
 
-            WriteTimePerformance<LinqSort>();
-            WriteTimePerformance<InsertionSort>();
-            WriteTimePerformance<SelectionSort>();
 
+            selectionTask.Wait();
+            insertionTask.Wait();
+            linqTask.Wait();
             Console.WriteLine("\nAll done!");
             Console.ReadLine();
         }
@@ -23,13 +31,13 @@ namespace SortingAlgorithms
             const int seedValue = 1;
             const int minValue = 0;
             const int maxValue = 1000000000;
-            const int count = 100000;
+            const int count = 10000;
             int[] sizeIncrements = {1, 2, 4};
 
-            Console.WriteLine($"Running {typeof(TSort).Name}...");
             var test = new TimeTest<TSort>(seedValue, minValue, maxValue, count, sizeIncrements, 0);
             test.AssessSortPerformance();
-            Console.WriteLine($"{test}\n");
+
+            Console.WriteLine($"{typeof(TSort).Name}\n{test}\n");
         }
     }
 }
