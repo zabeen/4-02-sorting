@@ -9,12 +9,14 @@ namespace SortingAlgorithms.Tests
     {
         private readonly SortingTest<LinqSort> _defaultTest = new SortingTest<LinqSort>();
         private readonly SortingTest<SelectionSort> _selectionTest = new SortingTest<SelectionSort>();
+        private  readonly SortingTest<InsertionSort> _insertionTest = new SortingTest<InsertionSort>();
 
         [Test]
         public void SortedListLengthRemainsIdenticalToUnsorted()
         {
             _defaultTest.SortedListLengthRemainsIdenticalToUnsorted();
             _selectionTest.SortedListLengthRemainsIdenticalToUnsorted();
+            _insertionTest.SortedListLengthRemainsIdenticalToUnsorted();
         }
 
         [Test]
@@ -22,6 +24,7 @@ namespace SortingAlgorithms.Tests
         {
             _defaultTest.ItemsAreInCorrectOrder();
             _selectionTest.ItemsAreInCorrectOrder();
+            _insertionTest.ItemsAreInCorrectOrder();
         }
     }
 }

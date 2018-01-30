@@ -19,7 +19,10 @@ namespace SortingAlgorithms
         static void Main(string[] args)
         {
             WriteTimePerformance<LinqSort>();
+            WriteTimePerformance<InsertionSort>();
             WriteTimePerformance<SelectionSort>();
+
+            Console.WriteLine("\nAll done!");
             Console.ReadLine();
         }
 
