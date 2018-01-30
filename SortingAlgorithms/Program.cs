@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using SortingAlgorithms.Algorithms;
+﻿using SortingAlgorithms.Algorithms;
 using SortingAlgorithms.Tests;
+using System;
 
 namespace SortingAlgorithms
 {
-    public class Performance
-    {
-        public string SortType { get; set; }
-        public int Count { get; set; }
-        public int Duration { get; set; }
-    }
-
     class Program
     {
         static void Main(string[] args)
