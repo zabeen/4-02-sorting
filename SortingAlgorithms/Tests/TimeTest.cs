@@ -9,9 +9,8 @@ namespace SortingAlgorithms.Tests
     public class Performance
     {
         public int ItemCount { get; set; }
-        public double ElapsedMs { get; set; }
-        public int SizeFactor { get; set; }
-        public double TimeFactor { get; set; }
+        public double UnorderedTimeMs { get; set; }
+        public double OrderedTimeMs { get; set; }
     }
 
     public class TimeTest<TSort> where TSort : ISorter, new()
@@ -25,7 +24,7 @@ namespace SortingAlgorithms.Tests
         private readonly IEnumerable<int> _sizeIncrements;
         private readonly int _baselineIndex;
 
-        public TimeTest(int seedValue, int minValue, int maxValue ,int count, IEnumerable<int> sizeIncrements, int baselineIndex)
+        public TimeTest(int seedValue, int minValue, int maxValue, int count, IEnumerable<int> sizeIncrements, int baselineIndex)
         {
             _seedValue = seedValue;
             _minValue = minValue;
@@ -37,21 +36,29 @@ namespace SortingAlgorithms.Tests
 
         public override string ToString()
         {
-            return string.Join("\n", _performances.OrderBy(p => p.ItemCount).Select(p => $"{p.ItemCount:N0} items, {p.ElapsedMs}ms; x{p.SizeFactor:N0} size => x{p.TimeFactor:N1} time").ToList());
+            var size = _performances[_baselineIndex].ItemCount;
+            var time = _performances[_baselineIndex].UnorderedTimeMs;
+
+            return string.Join("\n", _performances.OrderBy(p => p.ItemCount).Select(p => 
+                $"{p.ItemCount:N0} items, [U] {p.UnorderedTimeMs}ms, [O] {p.OrderedTimeMs}ms; " +
+                $"size: x{p.ItemCount / size:N0} => time: [U] x{p.UnorderedTimeMs / time:N1}, [O] x{p.OrderedTimeMs / time:N1}"
+                ).ToList());
         }
 
         public List<Performance> AssessSortPerformance()
         {
             foreach (var increment in _sizeIncrements)
             {
-                Performance performance = new Performance() { ItemCount = _count * increment, SizeFactor = increment };
-                var items = Generator.GenerateRandomNumbers(_seedValue, _minValue, _maxValue, performance.ItemCount);            
-                performance.ElapsedMs = TimeSort(items);
+                Performance performance = new Performance() { ItemCount = _count * increment };
+
+                var unordered = Generator.GenerateRandomNumbers(_seedValue, _minValue, _maxValue, performance.ItemCount);
+                List<int> ordered = Generator.GenerateRandomNumbers(_seedValue, _minValue, _maxValue, performance.ItemCount).OrderBy(i => i).ToList();
+
+                performance.UnorderedTimeMs = TimeSort(unordered);
+                performance.OrderedTimeMs = TimeSort(ordered);
+
                 _performances.Add(performance);
             }
-
-            var baselineTime = _performances[_baselineIndex].ElapsedMs;
-            _performances.ForEach(p => p.TimeFactor = p.ElapsedMs/baselineTime);
 
             return _performances;
         }

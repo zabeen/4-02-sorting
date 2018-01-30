@@ -18,6 +18,8 @@ namespace SortingAlgorithms
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("[U] = Unordered, [O] = Ordered\n");
+
             WriteTimePerformance<LinqSort>();
             WriteTimePerformance<InsertionSort>();
             WriteTimePerformance<SelectionSort>();
@@ -32,10 +34,10 @@ namespace SortingAlgorithms
             const int minValue = 0;
             const int maxValue = 1000000000;
             const int count = 100000;
-            int[] sizeIncrements = {1, 1, 2, 4};
+            int[] sizeIncrements = {1, 2, 4};
 
             Console.WriteLine($"Running {typeof(TSort).Name}...");
-            var test = new TimeTest<TSort>(seedValue, minValue, maxValue, count, sizeIncrements, 1);
+            var test = new TimeTest<TSort>(seedValue, minValue, maxValue, count, sizeIncrements, 0);
             test.AssessSortPerformance();
             Console.WriteLine($"{test}\n");
         }
