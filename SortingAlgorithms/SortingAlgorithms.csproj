@@ -54,6 +54,7 @@
     <Compile Include="Tests\SortingTestRunner.cs" />
     <Compile Include="Tests\SortingTest.cs" />
     <Compile Include="Tests\ItemsToSort.cs" />
+    <Compile Include="Tests\TimeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

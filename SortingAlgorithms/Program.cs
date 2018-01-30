@@ -3,34 +3,37 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using SortingAlgorithms.Algorithms;
+using SortingAlgorithms.Tests;
 
 namespace SortingAlgorithms
 {
+    public class Performance
+    {
+        public string SortType { get; set; }
+        public int Count { get; set; }
+        public int Duration { get; set; }
+    }
+
     class Program
     {
-        
-        private const int SeedValue = 1;
-        private const int MinValue = 0;
-        private const int MaxValue = 1000;
-        private const int Count = 10;
-
         static void Main(string[] args)
         {
-            Console.WriteLine($"Unsorted: [{string.Join(",", Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count))}]");
-            PerformSort(new LinqSort());
-            PerformSort(new SelectionSort());
+            WriteTimePerformance<LinqSort>();
+            WriteTimePerformance<SelectionSort>();
             Console.ReadLine();
         }
 
-        static void PerformSort(ISorter sort)
+        static void WriteTimePerformance<TSort>() where TSort: ISorter, new()
         {
-            var items = Generator.GenerateRandomNumbers(SeedValue, MinValue, MaxValue, Count);
+            const int seedValue = 1;
+            const int minValue = 0;
+            const int maxValue = 1000000000;
+            const int count = 10;
+            int[] sizeIncrements = {1, 1, 2, 10, 100, 1000, 2000,};
 
-            Stopwatch sw = Stopwatch.StartNew();
-            var sortedItems = sort.SortItems(items);
-            sw.Stop();
-
-            Console.WriteLine($"{sort.GetType().Name}: [{string.Join(",", sortedItems)}]; {sw.Elapsed.TotalMilliseconds}ms");
+            var test = new TimeTest<TSort>(seedValue, minValue, maxValue, count, sizeIncrements, 1);
+            test.AssessSortPerformance();
+            Console.WriteLine($"{typeof(TSort).Name}\n{test}\n");
         }
     }
 }
