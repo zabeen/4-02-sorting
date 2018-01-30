@@ -50,8 +50,8 @@ namespace SortingAlgorithms.Tests
                 _performances.Add(performance);
             }
 
-            var timeOfSmallestSet = _performances[_baselineIndex].ElapsedMs;
-            _performances.ForEach(p => p.TimeFactor = p.ElapsedMs/timeOfSmallestSet);
+            var baselineTime = _performances[_baselineIndex].ElapsedMs;
+            _performances.ForEach(p => p.TimeFactor = p.ElapsedMs/baselineTime);
 
             return _performances;
         }
