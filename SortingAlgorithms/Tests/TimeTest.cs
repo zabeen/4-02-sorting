@@ -31,7 +31,7 @@ namespace SortingAlgorithms.Tests
             _minValue = minValue;
             _maxValue = maxValue;
             _count = count;
-            _sizeIncrements = sizeIncrements.OrderBy(i => i);
+            _sizeIncrements = sizeIncrements;
             _baselineIndex = baselineIndex;
         }
 
