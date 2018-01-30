@@ -28,8 +28,8 @@ namespace SortingAlgorithms
             const int seedValue = 1;
             const int minValue = 0;
             const int maxValue = 1000000000;
-            const int count = 100;
-            int[] sizeIncrements = {1, 1, 2, 1000, 2000};
+            const int count = 100000;
+            int[] sizeIncrements = {1, 1, 2, 4};
 
             Console.WriteLine($"Running {typeof(TSort).Name}...");
             var test = new TimeTest<TSort>(seedValue, minValue, maxValue, count, sizeIncrements, 1);
