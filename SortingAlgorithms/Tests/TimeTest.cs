@@ -37,11 +37,12 @@ namespace SortingAlgorithms.Tests
         public override string ToString()
         {
             var size = _performances[_baselineIndex].ItemCount;
-            var time = _performances[_baselineIndex].UnorderedTimeMs;
+            var utime = _performances[_baselineIndex].UnorderedTimeMs;
+            var otime = _performances[_baselineIndex].OrderedTimeMs;
 
             return string.Join("\n", _performances.OrderBy(p => p.ItemCount).Select(p => 
-                $"{p.ItemCount:N0} items, [U] {p.UnorderedTimeMs}ms, [O] {p.OrderedTimeMs}ms; " +
-                $"size: x{p.ItemCount / size:N0} => time: [U] x{p.UnorderedTimeMs / time:N1}, [O] x{p.OrderedTimeMs / time:N1}"
+                $"{p.ItemCount:N0} items, [U] {p.UnorderedTimeMs:F2}ms, [O] {p.OrderedTimeMs:F2}ms; " +
+                $"size: x{p.ItemCount / size:N0} => time: [U] x{p.UnorderedTimeMs / utime:N1}, [O] x{p.OrderedTimeMs / otime:N1}"
                 ).ToList());
         }
 
