@@ -25,11 +25,11 @@ namespace SortingAlgorithms
 
         static void WriteTimePerformance<TSort>() where TSort: ISorter, new()
         {
-            const int seedValue = 1;
+            const int seedValue = 12345678;
             const int minValue = 0;
             const int maxValue = 1000000000;
-            const int count = 10000;
-            int[] sizeIncrements = {1, 2, 4};
+            const int count = 1000;
+            int[] sizeIncrements = {1, 2, 4, 10, 100};
 
             var test = new TimeTest<TSort>(seedValue, minValue, maxValue, count, sizeIncrements, 0);
             test.AssessSortPerformance();
