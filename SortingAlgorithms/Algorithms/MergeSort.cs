@@ -24,8 +24,8 @@ namespace SortingAlgorithms.Algorithms
 
                     if (totalLeft > listLength)
                     {
-                        var firstList = new Queue<int>(sorted.GetRange(i, listLength));
-                        var secondList = new Queue<int>(sorted.GetRange(i + listLength, leftForSecond < listLength ? leftForSecond : listLength));
+                        var firstList = sorted.GetRange(i, listLength);
+                        var secondList = sorted.GetRange(i + listLength, leftForSecond < listLength ? leftForSecond : listLength);
                         tempSortedList.AddRange(PerformMergeSort(firstList, secondList));
                     }
                     else
@@ -40,31 +40,33 @@ namespace SortingAlgorithms.Algorithms
 
             // final merge
             var finalTakeCount = takeCount / 2;
-            var finalFirstList = new Queue<int>(sorted.GetRange(0, finalTakeCount));
-            var finalSecondList = new Queue<int>(sorted.GetRange(finalTakeCount, itemsCount - finalTakeCount));
+            var finalFirstList = sorted.GetRange(0, finalTakeCount);
+            var finalSecondList = sorted.GetRange(finalTakeCount, itemsCount - finalTakeCount);
             return PerformMergeSort(finalFirstList, finalSecondList);
         }
 
-        private IEnumerable<int> PerformMergeSort(Queue<int> firstList, Queue<int> secondList)
+        private IEnumerable<int> PerformMergeSort(IEnumerable<int> firstList, IEnumerable<int> secondList)
         {
+            var firstQ = new Queue<int>(firstList);
+            var secondQ = new Queue<int>(secondList);
             var merged = new List<int>();
-            var mergedCount = firstList.Count + secondList.Count;
+            var mergedCount = firstQ.Count + secondQ.Count;
 
             for (var i = 0; i < mergedCount; i++)
             {
-                if (firstList.Count == 0)
+                if (firstQ.Count == 0)
                 {
-                    merged.AddRange(secondList);
+                    merged.AddRange(secondQ);
                     break;
                 }
 
-                if (secondList.Count == 0)
+                if (secondQ.Count == 0)
                 {
-                    merged.AddRange(firstList);
+                    merged.AddRange(firstQ);
                     break;
                 }
 
-                merged.Add(firstList.Peek() < secondList.Peek() ? firstList.Dequeue() : secondList.Dequeue());
+                merged.Add(firstQ.Peek() < secondQ.Peek() ? firstQ.Dequeue() : secondQ.Dequeue());
             }
 
             return merged;
