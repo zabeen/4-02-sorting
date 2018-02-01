@@ -10,6 +10,7 @@ namespace SortingAlgorithms.Tests
         private readonly SortingTest<LinqSort> _defaultTest = new SortingTest<LinqSort>();
         private readonly SortingTest<SelectionSort> _selectionTest = new SortingTest<SelectionSort>();
         private  readonly SortingTest<InsertionSort> _insertionTest = new SortingTest<InsertionSort>();
+        private readonly SortingTest<MergeSort> _mergeTest = new SortingTest<MergeSort>();
 
         [Test]
         public void SortedListLengthRemainsIdenticalToUnsorted()
@@ -17,6 +18,7 @@ namespace SortingAlgorithms.Tests
             _defaultTest.SortedListLengthRemainsIdenticalToUnsorted();
             _selectionTest.SortedListLengthRemainsIdenticalToUnsorted();
             _insertionTest.SortedListLengthRemainsIdenticalToUnsorted();
+            _mergeTest.SortedListLengthRemainsIdenticalToUnsorted();
         }
 
         [Test]
@@ -25,6 +27,7 @@ namespace SortingAlgorithms.Tests
             _defaultTest.ItemsAreInCorrectOrder();
             _selectionTest.ItemsAreInCorrectOrder();
             _insertionTest.ItemsAreInCorrectOrder();
+            _mergeTest.ItemsAreInCorrectOrder();
         }
     }
 }
