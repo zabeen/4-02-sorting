@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\MergeSort.cs" />
     <Compile Include="Algorithms\ISorter.cs" />
     <Compile Include="Algorithms\LinqSort.cs" />
     <Compile Include="Algorithms\InsertionSort.cs" />
