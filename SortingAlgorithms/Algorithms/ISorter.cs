@@ -10,13 +10,4 @@ namespace SortingAlgorithms.Algorithms
     {
         IEnumerable<int> SortItems(IEnumerable<int> itemsToSort);
     }
-
-    public class Sort : ISorter
-    {
-        public virtual IEnumerable<int> SortItems(IEnumerable<int> itemsToSort)
-        {
-            // use the in-built sort
-            return itemsToSort.OrderBy(i => i).ToList();
-        }
-    }
 }
