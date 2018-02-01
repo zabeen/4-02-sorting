@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SortingAlgorithms.Algorithms
 {
-    public class LinqSort : ISorter
+    public class ListSort : ISorter
     {
         public virtual IEnumerable<int> SortItems(IEnumerable<int> itemsToSort)
         {

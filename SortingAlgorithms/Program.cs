@@ -13,13 +13,13 @@ namespace SortingAlgorithms
             
             var selectionTask = Task.Run(() => WriteTimePerformance<SelectionSort>());
             var insertionTask = Task.Run(() => WriteTimePerformance<InsertionSort>());
-            var linqTask = Task.Run(() => WriteTimePerformance<LinqSort>());
+            var listTask = Task.Run(() => WriteTimePerformance<ListSort>());
             var mergeTask = Task.Run(() => WriteTimePerformance<MergeSort>());
 
 
             selectionTask.Wait();
             insertionTask.Wait();
-            linqTask.Wait();
+            listTask.Wait();
             mergeTask.Wait();
 
             Console.WriteLine("\nAll done!");
