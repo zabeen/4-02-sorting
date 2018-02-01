@@ -15,7 +15,6 @@ namespace SortingAlgorithms.Algorithms
             while (takeCount < itemsCount)
             {
                 var tempSortedList = new List<int>();
-                //var noOfLists = Math.Ceiling((double)itemsCount / takeCount);
 
                 for (int i = 0; i < itemsCount; i += takeCount)
                 {
@@ -40,35 +39,35 @@ namespace SortingAlgorithms.Algorithms
             }
 
             // final merge
-            var finalTake = takeCount / 2;
-            var finalFirst = new Queue<int>(sorted.GetRange(0, finalTake));
-            var finalSecond = new Queue<int>(sorted.GetRange(finalTake, itemsCount - finalTake));
-            return PerformMergeSort(finalFirst, finalSecond);
+            var finalTakeCount = takeCount / 2;
+            var finalFirstList = new Queue<int>(sorted.GetRange(0, finalTakeCount));
+            var finalSecondList = new Queue<int>(sorted.GetRange(finalTakeCount, itemsCount - finalTakeCount));
+            return PerformMergeSort(finalFirstList, finalSecondList);
         }
 
         private IEnumerable<int> PerformMergeSort(Queue<int> firstList, Queue<int> secondList)
         {
-            var tempSortedList = new List<int>();
+            var merged = new List<int>();
             var mergedCount = firstList.Count + secondList.Count;
 
             for (var i = 0; i < mergedCount; i++)
             {
                 if (firstList.Count == 0)
                 {
-                    tempSortedList.AddRange(secondList);
+                    merged.AddRange(secondList);
                     break;
                 }
 
                 if (secondList.Count == 0)
                 {
-                    tempSortedList.AddRange(firstList);
+                    merged.AddRange(firstList);
                     break;
                 }
 
-                tempSortedList.Add(firstList.Peek() < secondList.Peek() ? firstList.Dequeue() : secondList.Dequeue());
+                merged.Add(firstList.Peek() < secondList.Peek() ? firstList.Dequeue() : secondList.Dequeue());
             }
 
-            return tempSortedList;
+            return merged;
         }
     }
 }
